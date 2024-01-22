@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+.left-sidebar {
+  position : relative;
+  /* right:0; */
+  /* top: 0;
+  left: 0; */
+  /* bottom: 0;  */
+  flex: 1 ;
+  /* width: auto; */
+  font-family: 'Inter', sans-serif;
+  border-left: 1px solid #2F3336;
+  border-right: 1px solid #2F3336;
+
+  display: flex;
+  justify-content : center;
+  /* flex-direction : column;
+  align-items: center; */ 
+}
+.sidebar{
+  
+  
+  position: fixed;
+
+  /* top: 0;
+  left: 0; */
+  /* width: 400px; */
+  
+
+  /* font-family: 'Inter', sans-serif; */
+  
+
+  display: flex;
+  flex-direction : column;
+  align-items: center;
+}
+.sidebar-header{
+  
+  width: 100%;
+  /* padding:35px; */
+  display: flex;
+  /* justify-content: left; */
+  gap : 35px;
+  
+}
+
+
+.sidebar-content ul{
+  /* padding: 16px; */
+  display: flex;
+  
+  flex-direction: column;
+  gap: 5px;
+  font-size: 1rem;
+
+  
+}
+
+.lsb-actions-container{
+  display: flex;
+  gap: 30px;
+}
+
+
+.sidebar-button{
+
+  text-transform: capitalize;
+  padding: .7rem 4rem;
+  border: none;
+  border-radius: 50px;
+  background-color: #1D9BF0;
+  color: white;
+  font-size: 1rem;
+  
+}
+
+ul{
+  
+  list-style: none;
+  
+}
+
+.left-sidebar-actions{
+  gap: 50px;
+  padding: 16px;
+  
+  
+  
+}
+
+
+
+
+
