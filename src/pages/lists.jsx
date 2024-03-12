@@ -1,6 +1,6 @@
 
 
-const Lists = () => {
+export const Lists = () => {
   return (
     <div>
       <h2>Lists</h2>
@@ -13,5 +13,3 @@ const Lists = () => {
     </div>
   );
 };
-
-export default Lists;

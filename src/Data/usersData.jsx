@@ -1,4 +1,5 @@
-
+import {GlobalUserContext} from '../context/globalUserContext.jsx';
+import { useState } from 'react';
 
  export  const usersData = [
         {
@@ -68,7 +69,7 @@
           author: 'j@123',
           avatar: 'src/images/profile-photo.png',
           isAdmin: false,
-          isConnect: false,
+          isConnect: true,
           Follwers: 0,
           Following: 0,
           tweets: 0,
@@ -78,35 +79,15 @@
       ];
 
 
-export const useUsers = () => {
+export const UseUsers = ({children}) => {
   const [users, setUsers] = useState(usersData);
-  // const [isAdmin, setIsAdmin] = useState(false);
-  // const [isConnect, setIsConnect] = useState(false);
-  // const [isAuth, setIsAuth] = useState(false);
+
 
   const AddUser = (user) => {
-    // setUser((prev) => [...prev, user]);
-    setUsers((curr) => { 
-      const newUser = {
-        id: curr.length + 1,
-        name: user.name,
-        username: user.username,
-        email: user.email,
-        age: user.age,
-        address: user.address,
-        phone: user.phone,
-        gender: user.gender,
-        interests: user.interests,
-        author: user.author,
-        avatar: user.avatar,
-        isAdmin: user.isAdmin,
-        isConnect: user.isConnect,
-        Follwers: user.Follwers,
-        Following: user.Following,
-        tweets: user.tweets,
-      };
-      return [...curr, newUser];
-    });
+
+    setUsers([...users, user]);
+
+    
 
   };
   const DeleteUser = (id) => { 
@@ -136,46 +117,15 @@ export const useUsers = () => {
     });
   };
 
+
+
+  return (  
+    <GlobalUserContext.Provider value={{users, AddUser, DeleteUser, UpdateUser}}>
   
-
-  
-  // const AuthUser = (user) => { 
-  //   setIsAuth(true);
-  //   setUser((prev) => { 
-  //     const newUser = 
-
-  // const isAdmin = (user) => { 
-  //   setIsAdmin(true);
-  // };
-
-  // const isConnect = (user) => { 
-  //   setIsConnect(true);
-  // };
-
-  // const isAuth = (user) => { 
-  //   setIsAuth(true);
-  // };
-
-  return {   
-    users,
-    AddUser,
-    DeleteUser,
-    UpdateUser,
-};
-
-};
-
-  
-    
-    
-  
-  
+      {children}
+    </GlobalUserContext.Provider>
+  );
+}
 
 
-
-
-
-
-
-  
   

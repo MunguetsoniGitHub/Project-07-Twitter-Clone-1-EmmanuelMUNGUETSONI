@@ -1,7 +1,7 @@
 
 
 
-const Bookmarks = () => {
+export const Bookmarks = () => {
   return (
     <div>
       <h2>Bookmarks</h2>
@@ -10,7 +10,7 @@ const Bookmarks = () => {
 
 };
 
-export default Bookmarks;
+
 
 
       

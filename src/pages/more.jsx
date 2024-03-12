@@ -1,6 +1,6 @@
 
 
-const More = () => {
+export const More = () => {
   return (
     <div>
       <h2>More</h2>
@@ -8,4 +8,4 @@ const More = () => {
   );
 };
 
-export default More;
+

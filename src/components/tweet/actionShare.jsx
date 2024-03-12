@@ -1,20 +1,10 @@
 
-import {useContext} from 'react';
-import {TweetContext} from "../tweetDefaultData.jsx";
+// import {useContext} from 'react';
+// import {TweetContext} from "../tweetDefaultData.jsx";
 
-export default function TweetActionShare({id, ShareCount}) {
+export default function TweetActionShare({ShareCount, onShareTweet, id} ) {
 
-  const {onShareTweet} = useContext(TweetContext);
-  
-  // const { tweet } = props;
-  // const { t } = useTranslation();
-  // const { pathname } = useLocation();
-  // const { username } = useParams();
-  // const { id } = useParams();
-  // const { id: tweetId } = useParams();
-  // const { id: userId } = useParams();
-  // const { id: profileId } = useParams();
-  // const { id: mediaId } = useParams();
+  // const {tweets,onShareTweet} = useContext(TweetContext);
 
 
   return(

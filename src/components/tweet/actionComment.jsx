@@ -1,48 +1,14 @@
 
-import {useContext} from 'react';
-import {TweetContext} from "../tweetDefaultData.jsx";
+// import {useContext} from 'react';
+// import {TweetContext} from "../tweetDefaultData.jsx";
 
-function ActionComment({id, CommentCount}) {
+function ActionComment({onCommmentTweet, id, CommentCount}) {
 
-  const {onCommmentTweet} = useContext(TweetContext);
+  // const {tweets, onCommmentTweet} = useContext(TweetContext);
   
-  // const { tweetId, tweet, dispatch } = props;
-  // const [comment, setComment] = useState('');
-  // const [commentError, setCommentError] = useState(false);
-  // // const [commentLoading, setCommentLoading] = useState(false);
-
-  // function handleClick(e) {
-  //   const className = e.currentTarget.getAttrubute('actionComment');
-    // if (className === 'actionComment') {
-    //   setComment('');
-    //   setCommentError(false);
-    //   setCommentLoading(true);
-    //   dispatch(addComment(tweetId, comment));
-
-    // }
-    // return
-  // }
-
-  // function tweetActionCount() {
-  //   const tweetActionCount = tweet.action_count;
-  //   return tweetActionCount;
-  // }
 
   
   return (
-    // <div className="action-comment">
-    //   <div className="action-comment__header">
-    //     <div className="action-comment__header-text">
-    //       <h2>Comment</h2>
-    //     </div>
-    //     <div className="action-comment__header-icon">
-    //       <img src={closeIcon} alt="close" />
-    //     </div>
-
-    //   </div>
-    //   <div className="action-comment__body">
-    //     <div className="action-comment__body-text">
-    //       <textarea {/*onClick={handelClick}*/} className="actionComment"
 
     <button className="tweet-action" onClick={() => onCommmentTweet(id)} >
             

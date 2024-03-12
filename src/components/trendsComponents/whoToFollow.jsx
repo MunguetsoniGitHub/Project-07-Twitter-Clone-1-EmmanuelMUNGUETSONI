@@ -2,7 +2,7 @@ import Avatar from '../h2 tweetbody/avatar.jsx';
 import WhoToFollowAccountName from './whoToFollowAccountName.jsx';
 import FollowingButton from './followingButton.jsx';
 
-import {usersData} from '../../Data/usersData.js';
+import {usersData} from '../../Data/usersData.jsx';
 
 export default function WhoToFollow() {
   return (

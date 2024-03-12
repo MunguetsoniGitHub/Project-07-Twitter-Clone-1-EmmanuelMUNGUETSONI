@@ -8,10 +8,10 @@ import Tweets from '../components/tweets.jsx';
 
 // import {useTweets} from '../components/tweetDefaultData.jsx'
 
-import {TweetContext} from "../components/tweetDefaultData.jsx";
+import {TweetContext} from "../context/tweetContext.jsx";
 
 
-function Home() {
+export const Home = () => {
 
   // const { tweets, addTweet, onDeleteTweet, onCommmentTweet, onLikeTweet, onRetweetTweet, onShareTweet } = useTweets();
   
@@ -27,5 +27,3 @@ function Home() {
 }
 
 
-
-export default Home;

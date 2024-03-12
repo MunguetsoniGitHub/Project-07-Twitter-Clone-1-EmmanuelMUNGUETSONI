@@ -1,0 +1,79 @@
+
+
+
+{
+
+  
+
+
+
+
+  "tweets" : [
+
+    {
+      "id": 1,
+      "userId": 2,
+      "name": "CNN",
+      "username": "CNN",
+      
+      "avatar": "src/images/cnn-profile-photo.png",
+      "text": "CNN is a national news media network. It is the primary broadcaster of the World News online television program. ",
+      "dateTime": "2 days ago",
+      "CommentCount": 5,
+      "RetweetCount": 2,
+      "LikeCount": 2,
+      "likes": [2,3],
+      "ShareCount": null
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "name": "The New York Times",
+      "username": "nytimes",
+      
+      "avatar": "src/images/TNYT.png",
+      "text": "hhhhhhhhhhheeeeeeeeeeeeeeeeeeeeeeeeeeeekkssssssssssssssssssss ",
+      "image": "src/images/tweet-image.png",
+      "dateTime": "2 days ago",
+      "CommentCount": 5,
+      "RetweetCount": 2,
+      "LikeCount": 0,
+        "likes": [],
+      "ShareCount": null
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "name": "Tweeter",
+      "username": "tweeter",
+      
+      "avatar": "src/images/Tweet-Profile-Photo.png",
+      "text": "jjjjjjjjjdddddhhhssssssssssssssssssssssssssssssyyeeee",
+      "dateTime": "3 days ago",
+      "CommentCount": 76,
+      "RetweetCount": 2,
+      "LikeCount": 0,
+        "likes": [],
+      "ShareCount": null
+    }, 
+
+    {
+
+      "id": 4,
+      "name": "Tweeter",
+      "username": "tweeter",
+      
+      "avatar": "src/images/Tweet-Profile-Photo.png",
+      "text": "jjjjjjjjjdddddhhhssssssssssssggggddddddddddddddddddddd",
+      "dateTime": "4 days ago",
+      "CommentCount": 55,
+      "RetweetCount": 6,
+      "LikeCount": 0,
+        "likes": [],
+      "ShareCount": null
+    }
+
+  ]
+
+ 
+}

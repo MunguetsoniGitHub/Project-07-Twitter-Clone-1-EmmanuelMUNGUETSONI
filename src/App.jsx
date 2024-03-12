@@ -1,17 +1,19 @@
-import Home from "./pages/home.jsx";
-import Layout from "./components/layout.jsx";
+import {Home} from "./pages/home.jsx";
+import {Layout} from "./components/layout.jsx";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Explorer from "./pages/explorer.jsx";
-import Lists from "./pages/lists.jsx";
-import Messages from "./pages/messages.jsx";
-import Bookmarks from "./pages/bookmarks.jsx";
-import Notifications from "./pages/notifications.jsx";
-import More from "./pages/more.jsx";
-import Profile from "./pages/profile.jsx";
+import {Explorer} from "./pages/explorer.jsx";
+import {Lists} from "./pages/lists.jsx";
+import {Messages} from "./pages/messages.jsx";
+import {Bookmarks} from "./pages/bookmarks.jsx";
+import {Notifications} from "./pages/notifications.jsx";
+import {More} from "./pages/more.jsx";
+import {UserProfile} from "./pages/profile.jsx";
 
 import {UseTweets} from "./components/tweetDefaultData.jsx";
 import {UserProvider} from "./context/userContext.jsx";
+
+import {UseUsers} from "./Data/usersData.jsx";
 
 // import Sidebar from "./components/sidebar.jsx";
 // import Trends from "./components/trends.jsx";
@@ -24,7 +26,8 @@ import('./style/profile.css');
 
 export default function App() {
   return (
-  <UserProvider> 
+  <UserProvider>
+  <UseUsers>
   <UseTweets> 
     <BrowserRouter>
       <Routes>
@@ -35,12 +38,13 @@ export default function App() {
           <Route path="messages" element={<Messages />} />          
           <Route path="bookmarks" element={<Bookmarks />} />
           <Route path="lists" element={<Lists />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="/profile/:userId" element={<UserProfile />} />
           <Route path="more" element={<More />} />        
         </Route>      
       </Routes>    
     </BrowserRouter>
     </UseTweets>
+    </UseUsers>
     </UserProvider>
  
     

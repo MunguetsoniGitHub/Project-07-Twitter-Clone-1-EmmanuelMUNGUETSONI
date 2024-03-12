@@ -1,10 +1,10 @@
 
-import {useContext} from 'react';
-import {TweetContext} from "../tweetDefaultData.jsx";
+// import {useContext} from 'react';
+// import {TweetContext} from "../tweetDefaultData.jsx";
 
-function ActionRetweet({id, RetweetCount}) {
+function ActionRetweet({RetweetCount, onRetweetTweet,id}) {
   
-  const {onRetweetTweet} = useContext(TweetContext);
+  // const {tweets, onRetweetTweet} = useContext(TweetContext);
   
   return (
 

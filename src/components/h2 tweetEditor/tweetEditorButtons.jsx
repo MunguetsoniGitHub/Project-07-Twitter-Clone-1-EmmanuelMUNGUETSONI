@@ -1,10 +1,5 @@
 import React from 'react';
 
-import UpLoadMedia from "./upLoadMedia.jsx";
-import AddGif from "./addGif.jsx";
-import Poll from "./poll.jsx";
-import Emoji from "./emoji.jsx";
-import Schedule from "./schedule.jsx";
 import Button from "./button.jsx";
 
 export default function TweetEditorButtons(){
@@ -12,13 +7,31 @@ export default function TweetEditorButtons(){
   return(
     <div className="tweet-editor-buttons">
       <span className="tweet-editor-actions">
-        <UpLoadMedia />
-        <AddGif />
-        <Poll  />
-        <Emoji  />
-        <Schedule  />
+       
+        <div className="upLoad-media"  >
+         <input type="file" id="file-input" accept="images/*" />
+        </div>
+
+        <buttton className="addGif" alt="gif" >
+               <img src="src/images/Top-gif.png" alt="Retweet" />
+        </buttton>
+        
+        <buttton >
+          <img src="src/images/Top-poll.png" alt="Retweet" />
+        </buttton>
+        
+        <button className="emoji" >
+          <img src="src/images/Top-emoji.png" alt="Retweet" /> 
+        </button>
+        
+        <button  className="schedule" alt="schedule">
+          <img src="src/images/Top-schedule.png" alt="Retweet" />      
+        </button>
+        
       </span>
+      
       <Button />
+      
     </div>
   )  
 }

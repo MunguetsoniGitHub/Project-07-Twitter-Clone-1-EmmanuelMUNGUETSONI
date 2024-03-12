@@ -202,3 +202,15 @@ body{
     justify-content: center;
     gap: 20px;
 }
+
+/* .upLoad-media{
+
+    background-image: url("src/images/Top-media.png");
+ 
+} */
+
+.tweet-action.liked svg{
+
+    fill: red;
+
+}

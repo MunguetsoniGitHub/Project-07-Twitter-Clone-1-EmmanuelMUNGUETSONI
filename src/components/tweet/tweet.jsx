@@ -1,5 +1,6 @@
 
 import {React, useContext} from 'react';
+import {Link} from 'react-router-dom';
 
 import Avatar from '../h2 tweetbody/avatar.jsx';
 import ActionComment from './actionComment.jsx';
@@ -9,48 +10,53 @@ import TweetActionShare from './actionShare.jsx';
 import TweetTitle from './tweetTitle.jsx';
 
 //import TweetDefaultData from '../tweetDefaultData.jsx';
+// import {TweetContext} from "../tweetDefaultData.jsx";
+// import {GlobalUserContext} from "../../context/globalUserContext.jsx";
 
-import {TweetContext} from "../tweetDefaultData.jsx";
 
-// export default function Tweet({id, CommentCount, RetweetCount, LikeCount, ShareCount, name, username, dateTime, text, image, avatar, onCommmentTweet, onLikeTweet, onRetweetTweet, onShareTweet}) {
 
-export default function Tweet({id, CommentCount, RetweetCount, LikeCount, ShareCount, name, username, dateTime, text, image, avatar}) {
+export default function Tweet({tweet,onLikeTweet, onShareTweet,onCommmentTweet, onRetweetTweet}) {
   
 
-  const {onCommmentTweet,  onLikeTweet,  onRetweetTweet,  onShareTweet}  = useContext(TweetContext);
+  // const { tweets, getUsernameFromUserId}  = useContext(TweetContext);
+
+  // const {userId} = useContext(GlobalUserContext);
+
+  
   
   
   return (
-
+    
         <div className="tweet"  >
-
-          <Avatar avatar={avatar} className="tweet-avatar"/>
-
+          <Link to={`/profile/${tweet.userId}`}>
+          <Avatar avatar={tweet.avatar} className="tweet-avatar"/>
+          </Link>
           <div className="tweet-body">
 
             <div className="tweet-content">
 
-              <TweetTitle name={name} username={username} dateTime={dateTime}  />
+              <TweetTitle name={tweet.name} username={tweet.username} dateTime={tweet.dateTime}  />
 
               <div className="tweet-text">
-                <p>{text}</p>
+                <p>{tweet.text}</p>
               </div>
-              <img src={image} alt="image" class="tweet-image" />
+            { tweet.image ? <img src={tweet.image} alt="image" class="tweet-image" /> : null}
 
             </div>
 
             <div className="tweet-actions">
 
-              <ActionComment CommentCount={CommentCount} onCommmentTweet={onCommmentTweet} id={id} />          
-              <ActionRetweet RetweetCount={RetweetCount} onRetweetTweet={onRetweetTweet} id={id} />
-              <TweetActionLike LikeCount={LikeCount} onLikeTweet={onLikeTweet} id={id} />
-              <TweetActionShare ShareCount={ShareCount} onShareTweet={onShareTweet} id={id} /> 
+              <ActionComment onCommmentTweet={onCommmentTweet} id={tweet.id} CommentCount={tweet.CommentCount} />          
+              <ActionRetweet RetweetCount={tweet.RetweetCount} onRetweetTweet={onRetweetTweet}  id={tweet.id}  />
+              <TweetActionLike LikeCount={tweet.LikeCount} onLikeTweet={onLikeTweet} id={tweet.id}  />
+              <TweetActionShare ShareCount={tweet.ShareCount} onShareTweet={onShareTweet} id={tweet.id} /> 
 
             </div>
 
           </div>
 
         </div>
-
+      
   );
+
 }

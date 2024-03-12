@@ -1,64 +1,33 @@
 
 import {React, useContext} from 'react';
 import Tweet from './tweet/tweet.jsx';
-
-import {TweetContext} from "./tweetDefaultData.jsx";
+import {TweetContext} from "../context/tweetContext.jsx";
 
 export default function Tweets() {
 
-  const  {tweets, onCommmentTweet, onLikeTweet, onRetweetTweet, onShareTweet}  = useContext(TweetContext);
+  const  {tweets, onLikeTweet, onShareTweet, onCommmentTweet, onRetweetTweet}  = useContext(TweetContext);
   
   if(!tweets || tweets.length === 0) {
     return "no tweets";
   }
 
-
-  
-  
-  
   return (
-    // <section className="tweets">
-    //   <Tweet />
-    // </section>
-
     <section className="tweets">
-      {tweets.map(tweet => {
-        return (
+      {tweets && ( 
+        tweets.map(tweet => (
           <Tweet 
-            //{/* key={tweet.id} 
-            //tweet={tweet} 
-            //onLike={onLike} /> */}
 
+            key={tweet.id}             
+            tweet={tweet}
 
-            key={tweet.id} 
-            id={tweet.id}
-            name = {tweet.name}
-            username = {tweet.username}
-            dateTime = {tweet.dateTime}
-            text = {tweet.text}
-            image = {tweet.image}
-            avatar = {tweet.avatar} 
-
-            CommentCount = {tweet.CommentCount} 
-            RetweetCount = {tweet.RetweetCount}
-            LikeCount = {tweet.LikeCount}
-            ShareCount = {tweet.ShareCount}
-
-            onCommmentTweet = {onCommmentTweet}
-            onLikeTweet = {onLikeTweet}
-            onRetweetTweet = {onRetweetTweet}
-            onShareTweet = {onShareTweet}
-            
-            />
-            
-          );
-        })
-      }
-      
-      
-      
-      
-      
+            onLikeTweet={onLikeTweet}
+            onShareTweet={onShareTweet}
+            onCommmentTweet={onCommmentTweet}
+            onRetweetTweet={onRetweetTweet}            
+            />            
+          ))        
+      )}
+    
     </section>
   );
 }

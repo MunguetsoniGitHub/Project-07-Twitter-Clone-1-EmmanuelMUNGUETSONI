@@ -2,13 +2,9 @@
 import React, { createContext, useState } from 'react';
 import Login from './login.jsx';
 
-// import  usersData  from './users.json';
+// import DefaultData from '../Data/initial-data.json';
 
- import  {usersData}  from '../Data/usersData.js';
-
-
-
-
+ import  {usersData}  from '../Data/usersData.jsx';
 
 export  const UserContext = createContext(
   {
@@ -20,6 +16,8 @@ export  const UserContext = createContext(
 export const UserProvider = ({ children }) => {
 
   const [user, setUser] = useState(usersData.find((user) => user.id=== 4 && user.name=== 'Emma Munguetsoni' && user.username=== 'emma' && user.avatar=== 'src/images/profile-photo.png' ));
+
+ 
   
  
   // const [user, setUser] = useState(null);
@@ -34,7 +32,7 @@ export const UserProvider = ({ children }) => {
 
     //       });
 
-    const loggedInUser = usersData.find((userData) => userData.userName === userName && userData.password === password);
+    const loggedInUser = usersData.find((userData) => userData.username === userName && userData.password === password);
 
         if (loggedInUser){ 
           setUser(loggedInUser);
@@ -52,3 +50,8 @@ export const UserProvider = ({ children }) => {
 
   );
 };
+
+
+
+
+

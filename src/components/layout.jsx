@@ -10,7 +10,7 @@ import LeftSidebarActions from './sbComponents/leftSidebarActions.jsx';
 
 import {UseTweets} from "./tweetDefaultData.jsx";
 
-function Layout() {
+export const Layout = () => {  
     return (
         <>
           <UseTweets>
@@ -80,4 +80,3 @@ function Layout() {
     );
 }
 
-export default Layout;

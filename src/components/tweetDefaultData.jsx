@@ -1,130 +1,92 @@
 
 // import App from '../App'; 
 
-import {useState, createContext} from 'react';
 
-export const TweetContext = createContext();
+import React, {useState,  useContext, useEffect} from 'react';
+import {UserContext} from '../context/userContext.jsx'; 
+import {GlobalUserContext} from '../context/globalUserContext.jsx';
+import {TweetContext} from '../context/tweetContext.jsx';
+//import DefaultData from '../Data/initial-data.json';
 
-export const TweetDefaultData = [
-
-  {
-    id: 1,
-    name: "CNN",
-    username: "CNN",
-    // email: "tugrp@example.com",
-    // age: 30,
-    // address: "123 Main St, Anytown USA",
-    // phone: "555-555-5555",
-    // gender: "male",
-    // interests: ["sports", "music", "travel"],
-    // author: "j@123",
-    avatar: "src/images/cnn-profile-photo.png",
-    text: "CNN is a national news media network. It is the primary broadcaster of the World News online television program. ",
-    dateTime: "2 days ago",
-    CommentCount: 5,
-    RetweetCount: 2,
-    LikeCount: 3,
-    ShareCount: "",
-  },
-  {
-    id: 2,
-    name: "The New York Times",
-    username: "nytimes",
-    // email: "tzirw@example.com",
-    // age: 25,
-    // address: "456 Park Ave, Anytown USA",
-    // phone: "555-555-5556",
-    // gender: "female",
-    // interests: ["politics", "technology", "travel"],
-    // author: "j@123",
-    avatar: "src/images/TNYT.png",
-    text: "hhhhhhhhhhheeeeeeeeeeeeeeeeeeeeeeeeeeeekkssssssssssssssssssss ",
-    image: "src/images/tweet-image.png",
-    dateTime: "2 days ago",
-    CommentCount: 5,
-    RetweetCount: 2,
-    LikeCount: 3,
-    ShareCount: "",
-  },
-  {
-    id: 3,
-    name: "Tweeter",
-    username: "tweeter",
-    // email: "tzirw@example.com",
-    // age: 28,
-    // address: "789 Elm St, Anytown USA",
-    // phone: "555-555-5557",
-    // gender: "female",
-    // interests: ["politics", "technology", "travel"],
-    // author: "j@123",
-    avatar: "src/images/Tweet-Profile-Photo.png",
-    text: "jjjjjjjjjdddddhhhssssssssssssssssssssssssssssssyyeeee",
-    dateTime: "3 days ago",
-    CommentCount: 76,
-    RetweetCount: 2,
-    LikeCount: 34,
-    ShareCount: "", 
-  }, 
-
-  {
-
-    id: 4,
-    name: "Tweeter",
-    username: "tweeter",
-    // email: "tzirw@example.com",
-    // age: 28,
-    // address: "789 Elm St, Anytown USA",
-    // phone: "555-555-5557",
-    // gender: "female",
-    // interests: ["politics", "technology", "travel"],
-    // author: "j@123",
-    avatar: "src/images/Tweet-Profile-Photo.png",
-    text: "jjjjjjjjjdddddhhhssssssssssssggggddddddddddddddddddddd",
-    dateTime: "4 days ago",
-    CommentCount: 55,
-    RetweetCount: 6,
-    LikeCount: 32,
-    ShareCount: "",
-  },
-  
-]
-
-
-
+import axios from 'axios';
 
 export function UseTweets ({children})  {
-  const [tweets, setTweets] = useState(TweetDefaultData);
-  // const [icon, setIcon] = useState(false);
+  // const [tweets, setTweets] = useState(DefaultData.tweets);
 
-  // const iconChange = () => {
-  //   setIcon(!icon);
-  // }
+  const {user} = useContext(UserContext);
+  const {users} = useContext(GlobalUserContext);
 
-  
-  const addTweet = (tweet) => {
-    setTweets((curr) => {
-      const newTweet = {
-        // id: curr[curr.length - 1]? curr[curr.length - 1].id + 1 : 1,
-        id: curr[curr.length - 1]?.id + 1 ?? 0,
-        name : tweet.name,
-        username : tweet.username,
-        avatar : tweet.avatar,
-        text : tweet.text,
-        dateTime : tweet.dateTime,
-        CommentCount : tweet.CommentCount,
-        RetweetCount : tweet.RetweetCount,
-        LikeCount : tweet.LikeCount,
-        ShareCount : tweet.ShareCount,              
+  const getUsernameFromUserId = (userId) => {
+       
+    const globalUser = users.find(globUser => globUser.id === userId);
+    return globalUser ? globalUser.username : "inconnu";
+  }
+
+  //const [tweets, setTweets] = useState(DefaultData.tweets);
+  const [tweets, setTweets] = useState([]);
+
+  useEffect(() => {
+    const fetchTweets = async () => {
+      try {
+        // effectue une requete get à l'api
+        const response = await axios.get('http://localhost:3000/tweets');
+
+        // met à jour le state avec la réponse avec les tweets recues
+        setTweets(response.data);
+      } catch (error) {
+        // gérer les erreurs de la requete
+        console.error('erreur lors de la récupération des tweets', error);
+      }
     };
-      // return [...curr, newTweet];
-      return [...tweets, newTweet];
-    });  
-  
-  };
 
-  const onDeleteTweet = (TweetId) => {
-    setTweets((curr) => {return curr.filter((tweet) => tweet.id !== TweetId);});
-  };
+    // appelle la fonction fetchTweets au chargement de la page 
+    fetchTweets();
+
+    // retourner une fonction de nettoyage qui sera appelée lors du démontage du composant
+    return () => {
+      // nettoyer les ressources utilisées par la fonction fetchTweets
+      // par exemple, fermer les connexions à la base de données ou d'autres ressources autrement dit annulez les appels de requete à l'API
+      
+    };   
+  }, []);
+  
+  // const addTweet = (tweet) => {
+  //   setTweets((curr) => {
+    
+  //     const newTweet = {
+  //       //id: curr[curr.length - 1]? curr[curr.length - 1].id + 1 : 1,
+  //       id: curr[curr.length - 1]?.id + 1 ?? 0,
+  //       name : tweet.name,
+  //       username : tweet.username,
+  //       avatar : tweet.avatar,
+  //       text : tweet.text,
+  //       image : tweet.image,
+  //       dateTime : tweet.dateTime,
+  //       CommentCount : tweet.CommentCount,
+  //       RetweetCount : tweet.RetweetCount,
+  //       LikeCount : tweet.LikeCount,
+  //       ShareCount : tweet.ShareCount,              
+  //   };
+  //     // return [...curr, newTweet];
+  //     return [newTweet, ...tweets];
+  //   });  
+  
+  // };
+
+  const addTweet = (data) => {
+    axios.post('http://localhost:5173/tweets', data)
+      .then(response => {
+        setTweets([response.data, ...tweets]);
+      })
+      .catch(error => {
+        console.error('Erreur lors de l\'ajout du tweet', error);
+      });
+  }
+
+
+  // const onDeleteTweet = (TweetId) => {
+  //   setTweets((curr) => {return curr.filter((tweet) => tweet.id !== TweetId);});
+  // };
 
   // const updateTweet = (tweet) => {
   //   setTweets((curr) => {
@@ -170,27 +132,22 @@ export function UseTweets ({children})  {
   //   setIcon(!icon);
   // }
   const onLikeTweet = (tweetId) => {
-
-    
-    
+  
     setTweets((curr) => {
       const updatedTweet = curr.map((tweet) => {
         if (tweet.id === tweetId ) {
-       
+
+          // Vérifier si l'utilisateur a déjà liké le tweet
+
+          const userLiked = tweet.likes && tweet.likes.includes(user.id);
+
           return { 
-            // // if(icon){
-            //   return{
+
             ...tweet,
-                LikeCount: tweet.LikeCount + 1,
-                
-            // }else{
-            //   return{...tweet,
-            //     LikeCount: tweet.LikeCount - 1
-                
-            //          };
-  
-           
-          // }
+            likes: userLiked ? tweet.likes.filter((userId) => userId !== user.id) : [...(tweet.likes || []), user.id],
+                LikeCount: userLiked ? tweet.LikeCount - 1 :
+                  tweet.LikeCount + 1,
+       
            };
         }
         
@@ -232,7 +189,10 @@ export function UseTweets ({children})  {
   };
   return(
   
-    <TweetContext.Provider value={{tweets, addTweet, onDeleteTweet, onCommmentTweet, onLikeTweet, onRetweetTweet, onShareTweet}}>
+    <TweetContext.Provider value={{tweets, 
+                                   addTweet, 
+                                   // onDeleteTweet, 
+                                   onCommmentTweet, onLikeTweet, onRetweetTweet, onShareTweet, getUsernameFromUserId}}>
       
       {children}
      
@@ -241,100 +201,4 @@ export function UseTweets ({children})  {
 };
 
 
-    
-  
-//   { tweets, addTweet, onDeleteTweet, onCommmentTweet, onLikeTweet, onRetweetTweet, onShareTweet };
-
-// };
-        
-
-
-// export const useTweets = () => {
-//   const [tweets, setTweets] = useState(TweetDefaultData);
-  
-   
-  
-//   const addTweet = (tweet) => {
-//     setTweets((curr) => {
-//       const newTweet = {
-//         // id: curr[curr.length - 1]? curr[curr.length - 1].id + 1 : 1,
-//         id: curr[curr.length - 1]?.id + 1 ?? 0,
-//         name : tweet.name,
-//         username : tweet.username,
-//         avatar : tweet.avatar,
-//         text : tweet.text,
-//         dateTime : tweet.dateTime,
-//         CommentCount : tweet.CommentCount,
-//         RetweetCount : tweet.RetweetCount,
-//         LikeCount : tweet.LikeCount,
-//         ShareCount : tweet.ShareCount,              
-//     };
-//       // return [...curr, newTweet];
-//       return [...tweets, newTweet];
-//     });  
-
-//   };
-
-//   const onDeleteTweet = (TweetId) => {
-//     setTweets((curr) => {return curr.filter((tweet) => tweet.id !== TweetId);});
-//   };
-
-  
-
-//   const onCommmentTweet = (tweetId) => {
-//     setTweets((curr) => {
-//       const updatedTweet = [...curr];
-//       const tweet = updatedTweet.find((tweet) => tweet.id === tweetId);
-//       // if (tweet) {
-//         tweet.CommentCount += 1;
-//       // }
-//       return updatedTweet;
-//     });
-//   };
-
-
-  // const onLikeTweet = (tweetId) => {
-  //   setTweets((curr) => {
-  //     const updatedTweet = [...curr];
-
-  //     const likedTweet = updatedTweet.find((tweet) => tweet.id === tweetId);
-  //     // if (likedTweet) {
-  //       likedTweet.LikeCount += 1;
-  //     // }
-  //     return updatedTweet;
-  //   });
-
-  // };
-
-
-  // const onRetweetTweet = (tweetId) => {
-  //   setTweets((curr) => {
-  //     const updatedTweet = [...curr];
-  //     const retweetedTweet = updatedTweet.find((tweet) => tweet.id === tweetId);
-  //     // if (retweetedTweet) {
-  //       retweetedTweet.RetweetCount += 1;
-  //     // }
-  //     return updatedTweet;
-  //   });
-  // };
-
-  // const onShareTweet = (tweetId) => {
-  //   setTweets((curr) => {
-  //     const updatedTweet = [...curr];
-  //     const sharedTweet = updatedTweet.find((tweet) => tweet.id === tweetId);
-  //     // if (sharedTweet) {
-  //       sharedTweet.ShareCount += 1;
-  //     // }
-  //     return updatedTweet;
-  //   });
-  // };
-//   return { tweets, addTweet, onDeleteTweet, onCommmentTweet, onLikeTweet, onRetweetTweet, onShareTweet };
-
-// };
-                                                         
-          
-    
-  
-  
-  
   
